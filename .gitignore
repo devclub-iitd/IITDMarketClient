@@ -104,3 +104,6 @@ dist
 .tern-port
 .gitsecret/keys/random_seed
 !*.secret
+
+.pnp/
+.pnp.js
