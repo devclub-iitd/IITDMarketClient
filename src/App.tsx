@@ -31,8 +31,9 @@ import ItemDetail from './components/ItemDetail/ItemDetail';
 import CategoryDetail from './components/CategoryDetail/CategoryDetail';
 import ChatRoom from './components/ChatRoom/ChatRoom';
 import HS from './components/HiddenComponent/HiddenComponent';
-
+import Search from './pages/search/search';
 import PostAd from './components/PostAd/PostAd';
+import login from './components/RegisterForm/login';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -52,6 +53,9 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import { authSuccess } from './store/actions/index';
+import mytransactions from './pages/myaccount/mytransactions';
+import myads from './pages/myaccount/myads';
+import hostelpage from './pages/hostel-items/hostelpage';
 
 interface User {
     name: string;
@@ -110,6 +114,15 @@ class App extends React.Component<AppProps> {
                                 path="/chatroom/:chatid"
                                 component={ChatRoom}
                             />
+                            <Route
+                                path="/search/:searchtext"
+                                component={Search}
+                            />
+                            <Route path="/mytransactions" component={myads} />
+                            <Route path="/login" component={login} />
+                            <Route path="/myads" component={mytransactions} />
+                            <Route path="/hostelpage" component={hostelpage} />
+
                             <Redirect to="/home" />
                         </IonRouterOutlet>
                         {username ? <HS /> : null}

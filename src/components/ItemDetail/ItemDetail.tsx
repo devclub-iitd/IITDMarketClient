@@ -22,18 +22,23 @@ import { connect } from 'react-redux';
 
 import { Item } from '../../utils/types';
 
+import { getReview } from '../../store/actions/review';
+import { singleItemDetail } from '../../store/actions/item';
+
 interface MatchParams {
     id: string;
 }
 
 interface ItemDetailProps {
-    item: Item;
+    it: Item;
 }
 
 const ItemDetail: React.FC<
     RouteComponentProps<MatchParams> & ItemDetailProps
 > = (props) => {
-    const { item } = props;
+    console.log(props);
+    const { it } = props;
+
     return (
         <IonPage>
             <IonHeader className="ion-no-border" />
@@ -45,16 +50,16 @@ const ItemDetail: React.FC<
                             style={{ marginBottom: '1em' }}
                             color="primary"
                         >
-                            Rs. {item.price} <br />
-                            {item.name.toUpperCase()}
+                            Rs. {it.price} <br />
+                            {it.name.toUpperCase()}
                         </IonCardTitle>
                         <IonToolbar style={{ textAlign: 'center' }}>
-                            {/*  <img src={item.image} alt={item.name} /> */}
+                            <img src={it.image.url} alt={it.name} />
                         </IonToolbar>
                     </IonCardHeader>
                     <IonCardContent>
                         <IonChip outline color="primary">
-                            <IonLabel>{item.category}</IonLabel>
+                            <IonLabel>{it.category}</IonLabel>
                         </IonChip>
                         <IonChip outline color="primary">
                             <IonLabel>tags</IonLabel>
@@ -77,7 +82,12 @@ const ItemDetail: React.FC<
                                 Seller Hostel
                             </h4>
                         </IonText>
-                        <IonButton style={{ marginTop: '1em' }} expand="block">
+                        {/* insert :id */}
+                        <IonButton
+                            href="/chatroom/123"
+                            style={{ marginTop: '1em' }}
+                            expand="block"
+                        >
                             Chat With Seller
                         </IonButton>
                     </IonCardContent>
@@ -88,9 +98,9 @@ const ItemDetail: React.FC<
                     </IonCardHeader>
                     <IonText>
                         <ul>
-                            <li> {item.condition} </li>
-                            <li> Bought on {item.date.toDateString()} </li>
-                            <li> {item.description} </li>
+                            <li> {it.condition} </li>
+                            <li> Bought on {it.date.toDateString()} </li>
+                            <li> {it.description} </li>
                             <li>...</li>
                             <li>...</li>
                         </ul>
@@ -115,5 +125,11 @@ const mapStateToProps = (state, ownProps) => {
         it,
     };
 };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getReview: (id) => dispatch(getReview(id)),
+        singleItemDetail: (id) => dispatch(singleItemDetail(id)),
+    };
+};
 
-export default connect(mapStateToProps)(ItemDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemDetail);

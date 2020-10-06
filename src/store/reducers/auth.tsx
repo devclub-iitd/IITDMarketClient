@@ -1,19 +1,20 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initState = {
+    _id: null,
     loading: false,
     error: null,
-    username: '',
-    avatar: '',
-    contact_number: '',
-    entry_number: '',
-    hostel: '',
+    username: 'johndoe',
+    avatar: 'https://w3schools/avatar.jpeg',
+    contact_number: '9808779509',
+    entry_number: '2019cs10050',
+    hostel: 'Zanskar',
     chatPersons: [],
-    firstName: '',
-    lastName: '',
-    email: '',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john@gmail.com',
     isAdmin: false,
-    description: '',
+    description: 'Student at IITD',
     notifs: [],
     reviews: [],
     rating: 0,
@@ -57,6 +58,11 @@ const authReducer = (state = initState, actions) => {
             return {
                 ...state,
                 notifs: actions.notifs,
+            };
+        case actionTypes.AUTH_UPDATED:
+            return {
+                ...state,
+                loading: false,
             };
         default:
             return state;
