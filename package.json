@@ -20,7 +20,7 @@
     "@types/react-router": "^5.1.7",
     "@types/react-router-dom": "^5.1.5",
     "axios": "^0.19.2",
-    "eventsource": "^1.0.7",
+    "eventsource": "^2.0.2",
     "ionicons": "^5.0.1",
     "querystring": "^0.2.0",
     "react": "^16.13.1",
